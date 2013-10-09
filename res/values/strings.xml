@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Assignment1</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="assignment_text_bundle">tip_10_percent_btn_label</string>
+    <string name="tip_10_percent_btn_label">10%</string>
+    <string name="tip_15_percent_btn_label">15%</string>
+    <string name="tip_20_percent_btn_label">20%</string>
+    <string name="etTipAmountLabelPreText">"Tip is: "</string>
+    <string name="etSubTotalAmountTextFieldHint">Enter sub total amount before tip</string>
+</resources>
