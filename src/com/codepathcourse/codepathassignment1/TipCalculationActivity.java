@@ -21,6 +21,7 @@ public class TipCalculationActivity extends Activity {
 	public Button btnTip10;
 	public Button btnTip15;
 	public Button btnTip20;
+	public int currentlySelectedButtonId;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,7 @@ public class TipCalculationActivity extends Activity {
 			
 			@Override
 			public void afterTextChanged(Editable s) {
-				int currentlySelectedTipButtonId = getSelectedTipButtonId();
-				handleSpecificTipButtonPress(currentlySelectedTipButtonId);
+				handleSpecificTipButtonPress(currentlySelectedButtonId);
 			}
 		});
         
@@ -53,26 +53,6 @@ public class TipCalculationActivity extends Activity {
         btnTip10 = (Button) findViewById(R.id.btn10PercentTip);
         btnTip15 = (Button) findViewById(R.id.btn15PercentTip);
         btnTip20 = (Button) findViewById(R.id.btn20PercentTip);
-    }
-
-    public int getSelectedTipButtonId()
-    {
-    	if(btnTip10.isPressed())
-    	{
-    		return R.id.btn10PercentTip;
-    	}
-    	else if(btnTip15.isPressed())
-    	{
-    		return R.id.btn15PercentTip;
-    	}
-    	else if(btnTip20.isPressed())
-    	{
-    		return R.id.btn20PercentTip;
-    	}
-    	else 
-    	{
-    		return 0;
-    	}
     }
 
     @Override
@@ -83,6 +63,7 @@ public class TipCalculationActivity extends Activity {
     }
     
     public void tipButtonPressed(View v) {
+    	currentlySelectedButtonId = v.getId();
     	this.handleSpecificTipButtonPress(v.getId());
     }
     
@@ -92,26 +73,19 @@ public class TipCalculationActivity extends Activity {
     	double tipPercentage = 0;
     	switch (buttonId) {
     	case R.id.btn10PercentTip:
-    		tipPercentage = 0.1;
-    		btnTip10.setSelected(true);
-    		btnTip15.setSelected(false);
-    		btnTip20.setSelected(false);
+    		tipPercentage = 0.1;    		
     		break;
     	case R.id.btn15PercentTip:
     		tipPercentage = 0.15;
-    		btnTip10.setSelected(false);
-    		btnTip15.setSelected(true);
-    		btnTip20.setSelected(false);
     		break;
     	case R.id.btn20PercentTip:
     		tipPercentage = 0.2;
-    		btnTip10.setSelected(false);
-    		btnTip15.setSelected(false);
-    		btnTip20.setSelected(true);
     		break;
     	default:
     		break;
     	}
+    	
+    	
     	
     	if(!subTotalAmountStr.isEmpty()) {
     		double tipAmount = tipPercentage * Integer.valueOf(subTotalAmountStr);
